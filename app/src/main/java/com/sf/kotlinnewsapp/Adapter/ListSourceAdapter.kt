@@ -1,6 +1,7 @@
 package com.sf.kotlinnewsapp.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.sf.kotlinnewsapp.Adapter.ViewHolder.ListSourceViewHolder
 import com.sf.kotlinnewsapp.Interface.ItemClickListener
+import com.sf.kotlinnewsapp.ListNewsActivity
 import com.sf.kotlinnewsapp.Model.WebSite
 import com.sf.kotlinnewsapp.R
 
@@ -32,7 +34,9 @@ class ListSourceAdapter(private val context: Context, private val webSite: WebSi
 
         holder.setItemClickListener(object : ItemClickListener {
             override fun onClick(view: View, position: Int) {
-                Toast.makeText(context, "BJK" + position, Toast.LENGTH_SHORT).show()
+                val intent = Intent(context, ListNewsActivity::class.java)
+                intent.putExtra("source", webSite.sources!![position].id)
+                context.startActivity(intent)
             }
         })
     }
